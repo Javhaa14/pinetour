@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .body {
+        margin: 0;
+      }
+      .road-map-container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        height: 1022px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+      }
+      .map-img {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0;
+        background-image: url("./Map\ Image\ \(1\).png");
+        background-size: cover;
+      }
+
+      .blur-hoyr {
+        width: 1440px;
+        height: 204px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(216, 228, 233, 0) 0%,
+          rgba(216, 228, 233, 0.9) 100%
+        );
+      }
+      .frame-n {
+        display: flex;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .frame-h {
+        display: flex;
+        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
+        height: 640px;
+        padding-left: 120px;
+        padding-right: 120px;
+        width: 1200px;
+      }
+      .map-pin {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+      }
+      .map-text {
+        color: #000;
+        align-self: stretch;
+        text-align: center;
+        font-family: GIP;
+        font-size: 42px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+      }
+      .map-text-hoyr {
+        color: rgba(24, 24, 27, 0.7);
+        align-self: stretch;
+        text-align: center;
+        font-family: GIP;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: capitalize;
+        margin: 0;
+      }
+      .left-container {
+        display: flex;
+        width: 513px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+      .right-container {
+        width: 647px;
+        flex-shrink: 0;
+        align-self: stretch;
+      }
+      .con {
+        display: flex;
+        height: 47px;
+        width: 453px;
+        padding: 30px 30px 30px 30px;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 120px;
+        background: #eee9d9;
+      }
+      .cont {
+        display: flex;
+        height: 47px;
+        width: 453px;
+        padding: 30px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 120px;
+        background: rgba(139, 184, 193, 0.8);
+      }
+      .con-con-hoyr {
+        display: flex;
+        padding-left: 30px;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 0 0;
+      }
+      .map-pin {
+        width: 34px;
+        height: 34px;
+      }
+      .con-con {
+        display: flex;
+        padding-left: 30px;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 0 0;
+      }
+      .cont-gurav {
+        display: flex;
+        height: 47px;
+        width: 453px;
+        padding: 30px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 120px;
+        background: rgba(170, 216, 215, 0.8);
+      }
+      .con-con-gurav {
+        display: flex;
+        padding-left: 30px;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 0 0;
+      }
+      .cont-duruv {
+        display: flex;
+        height: 47px;
+        width: 453px;
+        padding: 30px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 120px;
+        background: rgba(139, 192, 189, 0.8);
+      }
+      .cont-tav {
+        display: flex;
+        height: 47px;
+        width: 453px;
+        padding: 30px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 120px;
+        background: rgba(151, 204, 224, 0.8);
+      }
+      .location-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .sukh {
+        color: var(--text-text-foreground, #09090b);
+        font-family: GIP;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0;
+      }
+      .ul {
+        color: var(--text-text-accent-foreground, #18181b);
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+      }
+      .day-container {
+        border: black;
+        border-radius: 50%;
+        border-color: aliceblue;
+        border-style: solid;
+        width: 50px;
+        height: 50px;
+        color: #f7f6f3;
+        background-color: aliceblue;
+      }
+      .location-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .loc-detail {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .icon-con {
+        width: 14px;
+        height: 14px;
+      }
+      .ic {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+      }
+      .ellipse {
+        width: 52px;
+        height: 52px;
+        fill: #f7f6f3;
+      }
+      .text-day {
+        color: #000;
+        font-family: GIP;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+      }
+      .sukh-zurag {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: 1000px;
+        margin-top: 500px;
+      }
+      .con:hover .con-con .sukh-zurag {
+        display: block;
+      }
+      .con:hover {
+        border: 3px;
+        border-color: white;
+        border-style: solid;
+      }
+      .amar-zurag {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: 600px;
+        margin-top: 0px;
+      }
+      .cont:hover .amar-zurag {
+        display: block;
+      }
+      .cont:hover {
+        border: 3px;
+        border-color: white;
+        border-style: solid;
+      }
+      .khorgo-zurag {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: 600px;
+        margin-top: 0px;
+      }
+      .cont-gurav:hover .khorgo-zurag {
+        display: block;
+      }
+      .cont-gurav:hover {
+        border: 3px;
+        border-color: white;
+        border-style: solid;
+      }
+      .terkh-zurag {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: 600px;
+        margin-top: 50px;
+      }
+      .cont-duruv:hover .terkh-zurag {
+        display: block;
+      }
+      .cont-duruv:hover {
+        border: 3px;
+        border-color: white;
+        border-style: solid;
+      }
+      .khuvs-zurag {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        margin-left: 600px;
+        margin-top: 50px;
+      }
+      .cont-tav:hover .khuvs-zurag {
+        display: block;
+      }
+      .cont-tav:hover {
+        border: 3px;
+        border-color: white;
+        border-style: solid;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="body">
+    <section class="road-map-container">
+      <div class="map-img">
+        <div class="blur-hoyr"></div>
+        <div class="frame-n">
+          <h1 class="map-text">Destination of Our Agency</h1>
+          <h3 class="map-text-hoyr">Pack Your Bags And Get Ready</h3>
+        </div>
+        <div class="frame-h">
+          <div class="left-container">
+            <div class="con">
+              <div class="con-con">
+                <div class="location-info">
+                  <p class="sukh">Sukhbaatar square</p>
+                  <div class="loc-detail">
+                    <div class="icon-con">
+                      <img class="ic" src="./Icon Container 2.png" alt="" />
+                      <img class="ic-back" src="" />
+                    </div>
+                    <p class="ul">Ulaanbaatar</p>
+                  </div>
+                </div>
+                <div class="day-container">
+                  <p class="text-day">DAY 1</p>
+                </div>
+                <img class="sukh-zurag" src="./Frame 176.png" alt="" />
+              </div>
+            </div>
+
+            <div class="cont">
+              <div class="con-con-hoyr">
+                <div class="location-info">
+                  <p class="sukh">Amarbaysgalant monastry</p>
+                  <div class="loc-detail">
+                    <div class="icon-con">
+                      <img class="ic" src="./Icon Container 2.png" alt="" />
+                      <img class="ic-back" src="" />
+                    </div>
+                    <p>Bulgan</p>
+                  </div>
+                </div>
+                <div class="day-container">
+                  <p class="text-day">DAY 2</p>
+                </div>
+              </div>
+              <img class="amar-zurag" src="Frame 177.png" alt="" />
+            </div>
+            <div class="cont-gurav">
+              <div class="con-con-gurav">
+                <div class="location-info">
+                  <p class="sukh">Khorgiin togoo</p>
+                  <div class="loc-detail">
+                    <div class="icon-con">
+                      <img class="ic" src="./Icon Container 2.png" alt="" />
+                      <img class="ic-back" src="" />
+                    </div>
+                    <p>Arkhangai</p>
+                  </div>
+                </div>
+                <div class="day-container">
+                  <p class="text-day">DAY 3</p>
+                </div>
+              </div>
+              <img class="khorgo-zurag" src="./11111.png" alt="" />
+            </div>
+            <div class="cont-duruv">
+              <div class="con-con">
+                <div class="location-info">
+                  <p class="sukh">Terkhiin tsagaan lake</p>
+                  <div class="loc-detail">
+                    <div class="icon-con">
+                      <img class="ic" src="./Icon Container 2.png" alt="" />
+                      <img class="ic-back" src="" />
+                    </div>
+                    <p>Arkhangai</p>
+                  </div>
+                </div>
+                <div class="day-container">
+                  <p class="text-day">DAY 4</p>
+                </div>
+              </div>
+              <img class="terkh-zurag" src="Frame 178.png" alt="" />
+            </div>
+            <div class="cont-tav">
+              <div class="con-con">
+                <div class="location-info">
+                  <p class="sukh">Khuvsgul lake</p>
+                  <div class="loc-detail">
+                    <div class="icon-con">
+                      <img class="ic" src="./Icon Container 2.png" alt="" />
+                      <img class="ic-back" src="" />
+                    </div>
+                    <p>Khuvsgul</p>
+                  </div>
+                </div>
+                <div class="day-container">
+                  <p class="text-day">DAY 5</p>
+                </div>
+              </div>
+              <img class="khuvs-zurag" src="Frame 179.png" alt="" />
+            </div>
+          </div>
+          <div class="right-container">
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+          </div>
+        </div>
+        <div class="map-pin"></div>
+      </div>
+    </section>
+  </body>
+</html>
